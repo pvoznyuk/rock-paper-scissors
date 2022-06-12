@@ -10,10 +10,10 @@ module.exports = {
 		inline: true
 	},
 	resolve: {
-		extensions: [".js"]
+		extensions: [".js", ".ts"]
 	},
 	entry: {
-		index: ["./src/js/index.js"]
+		index: ["./src/js/index.ts"]
 	},
 	output: {
 		path: path.resolve(__dirname, "build"),
@@ -39,6 +39,11 @@ module.exports = {
 				test: /\.js$/,
 				exclude: [/node_modules/],
 				use: ["babel-loader", "eslint-loader"]
+			},
+			{
+				test: /\.ts$/,
+				use: 'ts-loader',
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.(png|jpg|gif)$/i,
