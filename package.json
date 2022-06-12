@@ -3,14 +3,14 @@
   "description": "Gumtree UK frontend developer test project",
   "version": "3.0.0",
   "engines": {
-    "node": ">=10.15.3"
+    "node": ">=15.5.0"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:gumtreeuk/rockpaperscissors.git"
   },
   "scripts": {
-    "dev": "webpack-dev-server --content-base --mode development",
+    "dev": "webpack serve --mode development",
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -19,24 +19,24 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
-    "core-js": "^3.3.6",
-    "css-loader": "^3.2.0",
+    "@webpack-cli/serve": "^1.6.1",
+    "core-js": "^3.22.8",
+    "css-loader": "^6.7.1",
     "eslint": "^8.17.0",
-    "file-loader": "^4.2.0",
-    "html-webpack-plugin": "^3.0.6",
-    "jest": "^24.9.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^6.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.1",
+    "mini-css-extract-plugin": "^2.6.0",
     "regenerator-runtime": "^0.13.3",
-    "sass-loader": "^10.2.0",
-    "style-loader": "^1.0.0",
-    "ts-loader": "^8.4.0",
+    "sass": "^1.52.3",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.3.0",
     "typescript": "^4.7.3",
-    "url-loader": "^2.2.0",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.73.0",
     "webpack-core": "^0.6.9",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^4.9.2"
   },
   "license": "UNLICENSED"
 }

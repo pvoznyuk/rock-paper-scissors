@@ -11,11 +11,15 @@ export default class WeaponManager {
 		return this.weapons.some((w) => w.name === weaponName);
 	}
 
-	getWeapon(weaponName: string): Weapon {
+	getWeaponByName(weaponName: string): Weapon {
 		return this.weapons.find((w) => w.name === weaponName);
 	}
 
-	addWeapon(weapon: Weapon, beatenBy?: string[]) {
+	getRandomWeapon(): Weapon {
+		return this.weapons[Math.floor(Math.random() * this.weapons.length)];
+	}
+
+	addWeapon(weapon: Weapon) {
 		// check if this weapon already exist
 		if (this.hasWeapon(weapon.name)) {
 			throw new Error(`Weapon ${weapon.name} already exist`);
@@ -26,28 +30,22 @@ export default class WeaponManager {
 			throw new Error(`Weapon ${weapon.name} can not beat anything`);
 		}
 
-		// what this wepaon can be beaten by
-		beatenBy?.forEach((existingWeaponName) => {
-			if (weapon.name === existingWeaponName) {
+		weapon.beats.forEach((anotherName) => {
+			if (weapon.name === anotherName) {
 				throw new Error(`Weapon ${weapon.name} can not beat itself`);
 			}
-			if (!this.hasWeapon(existingWeaponName)) {
-				throw new Error(
-					`Weapon ${weapon.name} can not beat ${existingWeaponName} cause it is not exist`
-				);
+
+			const existingWeapon = this.getWeaponByName(anotherName);
+
+			if (
+				existingWeapon &&
+				weapon.beats.includes(anotherName) &&
+				existingWeapon.beats.includes(weapon.name)
+			) {
+				throw new Error(`Weapons can not beat each other`);
 			}
-			this.getWeapon(existingWeaponName).beats.push(weapon.name);
 		});
 
 		this.weapons.push(weapon);
-	}
-
-	removeWeapon(weapon: Weapon) {
-		this.weapons = this.weapons
-			.filter((w) => w.name !== weapon.name)
-			.map((w) => {
-				w.beats = w.beats.filter((b) => b !== weapon.name);
-				return w;
-			});
 	}
 }

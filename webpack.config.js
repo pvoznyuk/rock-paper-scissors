@@ -7,14 +7,13 @@ module.exports = {
 	cache: true,
 	devtool: "source-map",
 	devServer: {
-		inline: true
+		// inline: true,
+		// contentBase: path.resolve(__dirname, '../dist'),
 	},
 	resolve: {
 		extensions: [".js", ".ts"]
 	},
-	entry: {
-		index: ["./src/js/index.ts"]
-	},
+	entry: "./src/js/index.ts",
 	output: {
 		path: path.resolve(__dirname, "build"),
 		filename: "[name].js",

@@ -1,5 +1,5 @@
-import Weapon from "../../models/Weapon";
-import WeaponManager from "../../models/WeaponManager";
+import Weapon from "../Weapon/Weapon";
+import WeaponManager from "../Weapon/WeaponManager";
 
 export enum PlayerType {
 	USER,
@@ -7,6 +7,7 @@ export enum PlayerType {
 }
 
 export default abstract class Player {
+	name: string;
 	type: PlayerType;
 	score: number;
 	isSelectingWeapon: boolean;
@@ -20,17 +21,32 @@ export default abstract class Player {
 		score: HTMLDivElement;
 	};
 
-	constructor(querySelector: string, weaponManager: WeaponManager) {
+	constructor(
+		name: string,
+		querySelector: string,
+		weaponManager: WeaponManager
+	) {
+		this.name = name;
 		this.score = 0;
 		this.isSelectingWeapon = false;
 		this.selectedWeapon = null;
 		this.weaponManager = weaponManager;
 		this.DOMElement = document.querySelector(querySelector);
-		this.elements.weapon = this.DOMElement.querySelector(".player__weapon");
-		this.elements.name = this.DOMElement.querySelector(".player__name");
-		this.elements.score = this.DOMElement.querySelector(".player__score");
+
+		this.elements = {
+			weapon: this.DOMElement.querySelector("div.player__weapon"),
+			name: this.DOMElement.querySelector("h2.player__name"),
+			score: this.DOMElement.querySelector("p.player__score span"),
+		};
+
 		this.render();
 	}
+
+	abstract get playerName(): string;
+
+	abstract selectWeapon(): void;
+
+	abstract renderSelectingWeapon(): void;
 
 	startChoosingWeapon() {
 		this.selectedWeapon = null;
@@ -38,25 +54,29 @@ export default abstract class Player {
 		this.renderWeapon();
 	}
 
-	abstract get name(): string;
-
 	render() {
-		this.elements.name.innerHTML = this.name;
+		this.elements.name.innerHTML = this.playerName;
 		this.elements.score.innerHTML = this.score.toString();
 		this.renderWeapon();
 	}
 
-	abstract renderSelectingWeapon(): void;
-
 	renderWeapon() {
+		if (this.selectedWeapon) {
+			this.elements.weapon.innerHTML = this.selectedWeapon.render();
+			return;
+		}
 		if (this.isSelectingWeapon) {
 			this.renderSelectingWeapon();
 			return;
 		}
-		if (this.selectedWeapon) {
-			this.elements.weapon.innerHTML = this.selectedWeapon.icon;
-			return;
-		}
 		this.elements.weapon.innerHTML = "";
+	}
+
+	win() {
+		this.score = this.score + 1;
+	}
+
+	dispatchEvent(eventName: string) {
+		this.DOMElement.dispatchEvent(new CustomEvent(eventName));
 	}
 }

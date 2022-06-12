@@ -1,18 +1,30 @@
-// import Weapon from "../../models/Weapon";
-import WeaponManager from "../../models/WeaponManager";
+import WeaponManager from "../Weapon/WeaponManager";
 import Player, { PlayerType } from "./Player";
 
 export default class PlayerUser extends Player {
-	constructor(querySelector: string, weaponManager: WeaponManager) {
-		super(querySelector, weaponManager);
+	constructor(
+		name: string,
+		querySelector: string,
+		weaponManager: WeaponManager
+	) {
+		super(name, querySelector, weaponManager);
 		this.type = PlayerType.AI;
+
+		this.selectWeapon();
 	}
 
-	get name(): string {
-		return "🤖 AI";
+	selectWeapon() {
+		this.selectedWeapon = this.weaponManager.getRandomWeapon();
+		this.isSelectingWeapon = false;
+		this.renderWeapon();
+		this.dispatchEvent("weapon-selected");
+	}
+
+	get playerName(): string {
+		return `🤖 ${this.name} (AI)`;
 	}
 
 	renderSelectingWeapon() {
-		this.elements.weapon.innerHTML = "Thinking...";
+		this.elements.weapon.innerHTML = "Calculating...";
 	}
 }

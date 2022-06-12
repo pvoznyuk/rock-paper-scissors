@@ -1,0 +1,27 @@
+.footer {
+	padding: 20px;
+
+
+	&__controls {
+		width: 100%;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	&__other-games {
+		text-align: center;
+		font-size: 0.8em;
+		padding-top: 20px;
+		text-decoration: underline;
+
+
+		a {
+			padding: 0 10px;
+			color: black;
+
+			&:focus {
+				outline: 3px solid #5c2dda;
+			}
+		}
+	}
+}

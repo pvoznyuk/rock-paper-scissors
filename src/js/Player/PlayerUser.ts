@@ -1,25 +1,47 @@
-// import Weapon from "../../models/Weapon";
-import WeaponManager from "../../models/WeaponManager";
+import WeaponManager from "../Weapon/WeaponManager";
 import Player, { PlayerType } from "./Player";
 
 export default class PlayerUser extends Player {
-	constructor(querySelector: string, weaponManager: WeaponManager) {
-		super(querySelector, weaponManager);
+	constructor(
+		name: string,
+		querySelector: string,
+		weaponManager: WeaponManager
+	) {
+		super(name, querySelector, weaponManager);
 		this.type = PlayerType.USER;
+
+		this.selectWeapon();
 	}
 
-	get name(): string {
-		return "🐱 You";
+	selectWeapon() {
+		this.elements.weapon.addEventListener("click", (e) => {
+			const target = e.target as HTMLElement;
+
+			if (target.classList.contains("player__weapon-item")) {
+				this.selectedWeapon = this.weaponManager.getWeaponByName(
+					target.dataset.weapon
+				);
+				this.isSelectingWeapon = false;
+				this.renderWeapon();
+				this.dispatchEvent("weapon-selected");
+			}
+		});
+	}
+
+	get playerName(): string {
+		return `🐱 ${this.name} (you)`;
 	}
 
 	renderSelectingWeapon() {
-		const weaponList = this.weaponManager.weapons.map((w) => {
-			return `<li class="player__weapon-item" data-weapon="${w.name}" title="${w.name}">${w.icon}</li>`;
-		});
 		this.elements.weapon.innerHTML = `
-			<ul class="player__weapon-list">
-				${weaponList.join("")}
-			</ul>
+			<nav class="player__weapon-list">
+				${this.weaponManager.weapons
+					.map(
+						(w) =>
+							`<button class="player__weapon-item" data-weapon="${w.name}" title="${w.name}">${w.icon}</button>`
+					)
+					.join("")}
+			</nav>
 		`;
 	}
 }
