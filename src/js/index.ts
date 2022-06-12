@@ -1,22 +1,24 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Game from "./Game/Game";
-import "../css/index.scss";
-import { rpsWeapons, rpslsWeapons } from "./config";
 import { PlayerType } from "./Player/Player";
+import { rpsWeapons, rpslsWeapons } from "./config";
+import "../css/index.scss";
 
 document.addEventListener("DOMContentLoaded", function () {
-	// console.log(window.location);
 	const hash = window.location.search?.slice(1);
 	let game;
 
+	// Run a game with the given hash
 	switch (hash) {
+		// RPS Computer vs Computer
 		case "ai":
 			game = new Game("Rock ✕ Paper ✕ Scissors", rpsWeapons, [
 				PlayerType.AI,
 				PlayerType.AI,
 			]);
 			break;
+		// RPSLS Human vs Computer
 		case "spock":
 			game = new Game(
 				"Rock ✕ Paper ✕ Scissors ✕ Lizard ✕ Spock",
@@ -24,13 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				[PlayerType.USER, PlayerType.AI]
 			);
 			break;
-		case "ai-spock":
-			game = new Game(
-				"Rock ✕ Paper ✕ Scissors ✕ Lizard ✕ Spock",
-				rpslsWeapons,
-				[PlayerType.AI, PlayerType.AI]
-			);
-			break;
+		// RPS Human vs Computer
 		default:
 			game = new Game("Rock ✕ Paper ✕ Scissors", rpsWeapons, [
 				PlayerType.USER,

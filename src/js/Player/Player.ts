@@ -10,7 +10,6 @@ export default abstract class Player {
 	name: string;
 	type: PlayerType;
 	score: number;
-	isSelectingWeapon: boolean;
 	selectedWeapon: Weapon;
 	weaponManager: WeaponManager;
 
@@ -28,7 +27,6 @@ export default abstract class Player {
 	) {
 		this.name = name;
 		this.score = 0;
-		this.isSelectingWeapon = false;
 		this.selectedWeapon = null;
 		this.weaponManager = weaponManager;
 		this.DOMElement = document.querySelector(querySelector);
@@ -50,7 +48,6 @@ export default abstract class Player {
 
 	startChoosingWeapon() {
 		this.selectedWeapon = null;
-		this.isSelectingWeapon = true;
 		this.renderWeapon();
 	}
 
@@ -65,11 +62,7 @@ export default abstract class Player {
 			this.elements.weapon.innerHTML = this.selectedWeapon.render();
 			return;
 		}
-		if (this.isSelectingWeapon) {
-			this.renderSelectingWeapon();
-			return;
-		}
-		this.elements.weapon.innerHTML = "";
+		this.renderSelectingWeapon();
 	}
 
 	win() {

@@ -1,8 +1,6 @@
 import WeaponManager from "../Weapon/WeaponManager";
 import Weapon from "../Weapon/Weapon";
 import Player, { PlayerType } from "../Player/Player";
-import PlayerUser from "../Player/PlayerUser";
-import PlayerAI from "../Player/PlayerAI";
 import { WeaponData } from "../config";
 import PlayerFactory from "../Player/PlayerFactory";
 
@@ -22,7 +20,7 @@ export default class Game {
 		playerTypes: PlayerType[]
 	) {
 		this.name = name;
-		document.getElementById("h1").innerHTML = this.name;
+		document.getElementById("game-name").innerHTML = this.name;
 
 		// Weapons
 		this.weaponManager = new WeaponManager();
@@ -36,7 +34,7 @@ export default class Game {
 		this.createPlayers();
 		this.addPlayersListener();
 
-		// Result panel and Next round event
+		// Result panel and next round event
 		this.resultPanel = document.querySelector(".game__result");
 		this.resultPanel
 			.querySelector("#next")
@@ -73,6 +71,7 @@ export default class Game {
 	startRound() {
 		this.player1.startChoosingWeapon();
 		this.player2.startChoosingWeapon();
+
 		this.resultPanel.classList.toggle("game__result--ready", false);
 		this.resultPanel.querySelector(".game__result-text").innerHTML =
 			"Choose your weapon";
@@ -110,9 +109,12 @@ export default class Game {
 	}
 
 	addPlayersListener() {
+		// if Player1 selected his weapon, Player2 should select their one
 		this.player1.DOMElement.addEventListener("weapon-selected", () => {
 			this.player2.selectWeapon();
 		});
+
+		// if Player2 selected his weapon, we can select the winner
 		this.player2.DOMElement.addEventListener("weapon-selected", () => {
 			this.selectWinner();
 		});

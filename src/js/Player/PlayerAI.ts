@@ -15,7 +15,6 @@ export default class PlayerUser extends Player {
 
 	selectWeapon() {
 		this.selectedWeapon = this.weaponManager.getRandomWeapon();
-		this.isSelectingWeapon = false;
 		this.renderWeapon();
 		this.dispatchEvent("weapon-selected");
 	}

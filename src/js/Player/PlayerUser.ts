@@ -21,7 +21,6 @@ export default class PlayerUser extends Player {
 				this.selectedWeapon = this.weaponManager.getWeaponByName(
 					target.dataset.weapon
 				);
-				this.isSelectingWeapon = false;
 				this.renderWeapon();
 				this.dispatchEvent("weapon-selected");
 			}
