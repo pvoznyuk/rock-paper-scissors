@@ -4,11 +4,15 @@
 	width: 42%;
 	margin: 0 2%;
 
+	&__name {
+		padding: 0;
+		margin: 16px 0 8px;
+	}
+
 	&__weapon {
 		min-height: 200px;
 		background: rgb(255 255 255);
 		box-shadow: inset 0 0 20px 0px rgb(0 0 0 / 40%);
-		border-radius: 10px;
 		display: flex;
 		align-items: center;
 		justify-content: center;

@@ -4,11 +4,9 @@
 	max-width: 600px;
 	margin: 0 auto;
 	display: flex;
-	background-color: rgba(0, 0 ,0, 0.2);
-	// border-radius: 30px;
-	box-shadow: 0 0 rgba(0, 0, 0, 0.3);
-	// border: 4px solid #ffd21e;
-	flex-direction: column;
+	background-color: rgb(101 121 147);
+	box-shadow: -2px 3px 20px 0px rgb(0 0 0 / 30%);
+	flex-direction: column-reverse;
 
 	&__name {
 		color: #5c2dda;
