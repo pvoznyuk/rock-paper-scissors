@@ -1,25 +1,44 @@
+@use "sass:math";
+@import './_variables.scss';
+
 .footer {
-	padding: 20px;
+	padding: $pad;
 
 
 	&__controls {
 		width: 100%;
-		margin-bottom: 20px;
+		margin-bottom: $pad;
 		text-align: center;
 	}
 
 	&__other-games {
 		text-align: center;
 		font-size: 0.8em;
-		padding-top: 20px;
+		padding-top: $pad;
 
 		a {
-			padding: 0 10px;
-			color: black;
+			padding: 0 math.div($pad, 2);
+			color: $black;
 
 			&:focus {
-				outline: 3px solid #5c2dda;
+				outline: $focus;
 			}
+		}
+	}
+}
+
+@media only screen and (max-width: $mobile) {
+	.footer {
+		&__other-games {
+			display: flex;
+			flex-direction: column;
+			font-size: 0.85em;
+
+			a {
+				display: inline-block;
+				margin: 12px;
+			}
+
 		}
 	}
 }

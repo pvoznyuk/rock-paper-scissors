@@ -1,0 +1,9 @@
+{
+	"name": "Rock ✕ Paper ✕ Scissors",
+	"short_name": "RPS",
+	"icons": [],
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "#673ab7",
+	"background_color": "#EEE"
+}

@@ -37,7 +37,7 @@ export default class PlayerUser extends Player {
 				${this.weaponManager.weapons
 					.map(
 						(w) =>
-							`<button class="player__weapon-item" data-weapon="${w.name}" title="${w.name}">${w.icon}</button>`
+							`<button aria-label="${w.name}" class="player__weapon-item" data-weapon="${w.name}" title="${w.name}">${w.icon}</button>`
 					)
 					.join("")}
 			</nav>

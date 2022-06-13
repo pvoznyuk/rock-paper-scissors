@@ -1,3 +1,6 @@
+@use "sass:math";
+@import './_variables.scss';
+
 .player {
 	display: flex;
 	flex-direction: column;
@@ -11,12 +14,12 @@
 
 	&__weapon {
 		min-height: 200px;
-		background: rgb(255 255 255);
-		box-shadow: inset 0 0 20px 0px rgb(0 0 0 / 40%);
+		background: $white;
+		box-shadow: inset 0 0 20px 0px $shade40;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 10px;
+		padding: math.div($pad, 2);
 	}
 
 	&__weapon-list {
@@ -28,26 +31,68 @@
 	}
 
 	&__weapon-item {
-		border: 1px solid #c7c7c7;
+		border: 1px solid $grey;
 		box-sizing: border-box;
 		margin: 4px;
 		font-size: 1.8em;
 		cursor: pointer;
 		background: #e9e9e9;
 		border-radius: 6px;
+		transition: transform 0.2s, background-color 0.2s;
 
 		&:hover {
 			background: #dcd7d7;
+			transform: scale(1.1);
 		}
 
 		&:focus {
-			outline: 3px solid #5c2dda;
+			outline: $focus;
 		}
 
 	}
 
 	&__info {
 		text-align: center;
+		color: $white;
+	}
+
+}
+
+@media only screen and (max-width: $mobile) {
+	.player {
+		width: 90%;
+		margin: 0;
+		padding: 0 0 $pad 0;
+		display: flex;
+		flex-direction: column-reverse;
+
+		&:first-child {
+			border-bottom: 1px solid $black;
+		}
+
+		&__weapon {
+			min-height: 140px;
+		}
+
+		&__info {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 12px 0;
+		}
+
+		&__name {
+			margin: 0;
+			font-size: 1.1em;
+			text-align: left;
+		}
+
+		&__score {
+			margin: 0;
+			padding-left: 12px;
+			white-space: nowrap;
+			text-align: right;
+		}
 	}
 
 }

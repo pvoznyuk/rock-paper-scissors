@@ -1,16 +1,19 @@
+@use "sass:math";
+@import './_variables.scss';
+
 .game {
 	overflow: hidden;
 	width: 90%;
 	max-width: 600px;
 	margin: 0 auto;
 	display: flex;
-	background-color: rgb(101 121 147);
-	box-shadow: -2px 3px 20px 0px rgb(0 0 0 / 30%);
+	background-color: $dove;
+	box-shadow: -2px 3px 20px 0px $shade40;
 	flex-direction: column-reverse;
 
 	&__name {
-		color: #5c2dda;
-		padding: 16px;
+		color: $darkdove;
+		padding: $pad;
 		text-align: center;
 	}
 
@@ -23,15 +26,15 @@
 	}
 
 	&__result {
-		background: #ff8c00;
+		background: $orange;
 		min-height: 120px;
-		padding: 20px;
+		padding: $pad;
 		display: flex;
 		flex-direction: column;
 		align-content: center;
 		justify-content: center;
 		text-align: center;
-		margin-bottom: 24px;
+		margin-bottom: $pad;
 		align-items: center;
 
 		button {
@@ -51,5 +54,35 @@
 		font-weight: bold;
 		margin-bottom: 10px;
 		line-height: 1.2em;
+	}
+}
+
+@media only screen and (max-width: $mobile) {
+	.game {
+		width: 96%;
+		flex-direction: column;
+		padding: 20px 0 0;
+
+		&__name {
+			padding: math.div($pad, 2);
+			font-size: 1.1em;
+		}
+
+		&__players {
+			padding: 0;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&__result {
+			margin: 0;
+			padding: 10px;
+			min-height: 100px;
+		}
+
+		&__result-text {
+			font-size: 1.1em;
+		}
 	}
 }
