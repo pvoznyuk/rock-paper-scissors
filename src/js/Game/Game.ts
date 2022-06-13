@@ -64,7 +64,8 @@ export default class Game {
 	}
 
 	reset() {
-		this.createPlayers();
+		this.player1.score = 0;
+		this.player2.score = 0;
 		this.startRound();
 	}
 

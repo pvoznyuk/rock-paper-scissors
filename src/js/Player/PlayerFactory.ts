@@ -12,15 +12,10 @@ export default class PlayerFactory {
 		selector: string,
 		weaponManager: WeaponManager
 	) {
-		switch (playerType) {
-			case PlayerType.USER:
-				this.player = new PlayerUser(name, selector, weaponManager);
-				break;
-			case PlayerType.AI:
-				this.player = new PlayerAI(name, selector, weaponManager);
-				break;
-			default:
-				throw new Error("Unknown player type");
+		if (playerType === PlayerType.USER) {
+			this.player = new PlayerUser(name, selector, weaponManager);
+		} else {
+			this.player = new PlayerAI(name, selector, weaponManager);
 		}
 
 		return this.player;

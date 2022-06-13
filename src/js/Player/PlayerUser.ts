@@ -10,10 +10,6 @@ export default class PlayerUser extends Player {
 		super(name, querySelector, weaponManager);
 		this.type = PlayerType.USER;
 
-		this.selectWeapon();
-	}
-
-	selectWeapon() {
 		this.elements.weapon.addEventListener("click", (e) => {
 			const target = e.target as HTMLElement;
 
@@ -25,6 +21,10 @@ export default class PlayerUser extends Player {
 				this.dispatchEvent("weapon-selected");
 			}
 		});
+	}
+
+	selectWeapon() {
+		this.selectedWeapon = null;
 	}
 
 	get playerName(): string {

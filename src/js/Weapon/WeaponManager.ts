@@ -22,7 +22,7 @@ export default class WeaponManager {
 	addWeapon(weapon: Weapon) {
 		// check if this weapon already exist
 		if (this.hasWeapon(weapon.name)) {
-			throw new Error(`Weapon ${weapon.name} already exist`);
+			throw new Error(`Weapon ${weapon.name} is already in the list`);
 		}
 
 		// check if this weapon beats something
