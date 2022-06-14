@@ -22,25 +22,29 @@ export default class Game {
 		this.name = name;
 		document.getElementById("game-name").innerHTML = this.name;
 
-		// Weapons
-		this.weaponManager = new WeaponManager(weaponList);
-
-		// Players
-		this.playerTypes = playerTypes;
-		this.playerFactory = new PlayerFactory();
-		this.createPlayers();
-		this.addPlayersListener();
-
-		// Result panel and next round event
+		// Result panel and next round button
 		this.resultPanel = document.querySelector(".game__result");
 		this.resultPanel
 			.querySelector("#next")
 			.addEventListener("click", this.startRound.bind(this));
 
-		// Reset event
+		// Reset button
 		document
 			.querySelector("#reset")
 			.addEventListener("click", this.reset.bind(this));
+
+		try {
+			// Weapons
+			this.weaponManager = new WeaponManager(weaponList);
+
+			// Players
+			this.playerTypes = playerTypes;
+			this.playerFactory = new PlayerFactory();
+			this.createPlayers();
+			this.addPlayersListener();
+		} catch (error) {
+			this.resultPanel.querySelector(".game__result-text").innerHTML = error;
+		}
 	}
 
 	createPlayers() {

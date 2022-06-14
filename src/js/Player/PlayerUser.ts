@@ -24,7 +24,7 @@ export default class PlayerUser extends Player {
 	}
 
 	generateWeaponList() {
-		this.weaponManager.weapons.forEach((weapon) => {
+		this.weaponManager?.weapons.forEach((weapon) => {
 			const weaponElement = document.createElement("button");
 			weaponElement.classList.add("player__weapon-item");
 			weaponElement.innerHTML = weapon.render();

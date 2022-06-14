@@ -26,11 +26,20 @@ document.addEventListener("DOMContentLoaded", function () {
 				[PlayerType.USER, PlayerType.AI]
 			);
 			break;
+		// RPSB (with Beer) Human vs Computer
 		case "beer":
 			game = new Game("Rock ✕ Paper ✕ Scissors ✕ Beer", rpsbWeapons, [
 				PlayerType.AI,
 				PlayerType.USER,
 			]);
+			break;
+		// Invalid weapon list
+		case "invalid":
+			game = new Game(
+				"Rock ✕ Paper ✕ Scissors",
+				[],
+				[PlayerType.AI, PlayerType.USER]
+			);
 			break;
 		// RPS Human vs Computer
 		default:

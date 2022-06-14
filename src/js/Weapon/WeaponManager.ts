@@ -1,7 +1,7 @@
 import Weapon, { WeaponData } from "./Weapon";
 
 export default class WeaponManager {
-	weapons: Weapon[];
+	weapons: Weapon[] = [];
 
 	constructor(weaponList: WeaponData[]) {
 		this.addWeaponCollection(weaponList);
