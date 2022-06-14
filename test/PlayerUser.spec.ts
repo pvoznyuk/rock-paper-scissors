@@ -45,7 +45,7 @@ describe("Player (User)", () => {
 		player.generateWeaponList();
 		expect(player.selectedWeapon).toBeNull();
 		player.selectWeapon();
-		let element: HTMLElement = document.querySelector(
+		const element: HTMLElement = document.querySelector(
 			".player--1 .player__weapon .player__weapon-item:first-child"
 		) as HTMLElement;
 

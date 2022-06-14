@@ -2,7 +2,7 @@ import Weapon from "../src/js/Weapon/Weapon";
 import WeaponManager from "../src/js/Weapon/WeaponManager";
 
 describe("Weapon Manager", () => {
-	let weaponManager: WeaponManager = new WeaponManager();
+	const weaponManager: WeaponManager = new WeaponManager();
 
 	it("should add a weapon", () => {
 		expect(weaponManager.weapons.length).toBe(0);
