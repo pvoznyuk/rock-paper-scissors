@@ -85,4 +85,11 @@ describe("Game (Human vs AI)", () => {
 			"Choose your weapon"
 		);
 	});
+
+	it("should show an error on invalid weapon list", () => {
+		new Game("RPS", [], [PlayerType.USER, PlayerType.AI]);
+		expect(document.querySelector(".game__result-text").innerHTML).toBe(
+			"Error: Weapon list is not valid"
+		);
+	});
 });
