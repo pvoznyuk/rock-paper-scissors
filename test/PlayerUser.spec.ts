@@ -16,25 +16,25 @@ describe("Player (User)", () => {
 		);
 	});
 
-	it("should have a user player type", () => {
+	it("should return player's name", () => {
+		expect(player.playerName).toBe(`🐱 Player 1 (you)`);
+	});
+
+	it("should return player's type", () => {
 		expect(player.type).toBe(PlayerType.USER);
 	});
 
-	it("should got a score on win", () => {
+	it("should get a score on win", () => {
 		expect(player.score).toBe(0);
 		player.win();
 		expect(player.score).toBe(1);
 	});
 
-	it("should reset a score", () => {
+	it("should reset the score", () => {
 		player.score = 1;
 		expect(player.score).toBe(1);
 		player.reset();
 		expect(player.score).toBe(0);
-	});
-
-	it("should return a player's name", () => {
-		expect(player.playerName).toBe(`🐱 Player 1 (you)`);
 	});
 
 	it("should generate weapon list", () => {

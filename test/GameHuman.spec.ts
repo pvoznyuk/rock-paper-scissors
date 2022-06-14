@@ -28,7 +28,7 @@ describe("Game (Human vs AI)", () => {
 		expect(game.areBothPlayersAI()).toBe(false);
 	});
 
-	it("should not select a winner if players have not selkected yheir weapons", () => {
+	it("should not select a winner if players have not selected their weapons", () => {
 		expect(() => {
 			game.selectWinner();
 		}).toThrowError("No weapon selected");
