@@ -1,17 +1,18 @@
 import { PlayerType } from "../src/js/Player/Player";
 import PlayerUser from "../src/js/Player/PlayerUser";
-import Weapon from "../src/js/Weapon/Weapon";
 import WeaponManager from "../src/js/Weapon/WeaponManager";
 import template from "./__mocks__/dom";
+import weapons from "./__mocks__/weapons";
 
 describe("Player (User)", () => {
 	let player: PlayerUser;
 
 	beforeEach(() => {
 		document.body.innerHTML = template;
-		player = new PlayerUser("Player 1", ".player--1", new WeaponManager());
-		player.weaponManager.addWeapon(
-			new Weapon({ name: "Gun", icon: "🔫", beats: ["Sword"] })
+		player = new PlayerUser(
+			"Player 1",
+			".player--1",
+			new WeaponManager(weapons)
 		);
 	});
 
@@ -38,7 +39,7 @@ describe("Player (User)", () => {
 
 	it("should generate weapon list", () => {
 		player.generateWeaponList();
-		expect(player.weaponManager.weapons.length).toBe(1);
+		expect(player.weaponManager.weapons.length).toBe(3);
 	});
 
 	it("should select a weapon", () => {
@@ -50,6 +51,6 @@ describe("Player (User)", () => {
 		) as HTMLElement;
 
 		element.click();
-		expect(player.selectedWeapon.name).toBe("Gun");
+		expect(player.selectedWeapon.name).toBe("Rock");
 	});
 });

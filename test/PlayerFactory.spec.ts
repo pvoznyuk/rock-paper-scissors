@@ -4,6 +4,7 @@ import PlayerUser from "../src/js/Player/PlayerUser";
 import PlayerFactory from "../src/js/Player/PlayerFactory";
 import WeaponManager from "../src/js/Weapon/WeaponManager";
 import template from "./__mocks__/dom";
+import weapons from "./__mocks__/weapons";
 
 describe("PlayerFactory", () => {
 	beforeEach(() => {
@@ -16,7 +17,7 @@ describe("PlayerFactory", () => {
 			PlayerType.USER,
 			"Player 1",
 			".player--1",
-			new WeaponManager()
+			new WeaponManager(weapons)
 		);
 		expect(playerFactory.player).toBeInstanceOf(PlayerUser);
 	});
@@ -27,7 +28,7 @@ describe("PlayerFactory", () => {
 			PlayerType.AI,
 			"Player 1",
 			".player--1",
-			new WeaponManager()
+			new WeaponManager(weapons)
 		);
 		expect(playerFactory.player).toBeInstanceOf(PlayerAI);
 	});

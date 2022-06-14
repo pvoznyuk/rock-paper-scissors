@@ -1,9 +1,3 @@
-export type WeaponData = {
-	name: string;
-	icon: string;
-	beats: string[];
-};
-
 // Classic Rock/Paper/Scissors game
 export const rpsWeapons = [
 	{

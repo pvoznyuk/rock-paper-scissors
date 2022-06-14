@@ -1,4 +1,8 @@
-import { WeaponData } from "../config";
+export type WeaponData = {
+	name: string;
+	icon: string;
+	beats: string[];
+};
 
 export default class Weapon {
 	name: string;

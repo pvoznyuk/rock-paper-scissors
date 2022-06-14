@@ -1,10 +1,10 @@
-import Weapon from "./Weapon";
+import Weapon, { WeaponData } from "./Weapon";
 
 export default class WeaponManager {
 	weapons: Weapon[];
 
-	constructor() {
-		this.weapons = [];
+	constructor(weaponList: WeaponData[]) {
+		this.addWeaponCollection(weaponList);
 	}
 
 	hasWeapon(weaponName: string): boolean {
@@ -19,33 +19,56 @@ export default class WeaponManager {
 		return this.weapons[Math.floor(Math.random() * this.weapons.length)];
 	}
 
-	addWeapon(weapon: Weapon) {
-		// check if this weapon already exist
-		if (this.hasWeapon(weapon.name)) {
-			throw new Error(`Weapon ${weapon.name} is already in the list`);
+	isWeaponListValid(weaponList: WeaponData[]): boolean {
+		const weaponNames = new Set(weaponList.map((w) => w.name));
+
+		// check if we have at least three weapons
+		if (weaponNames.size < 3) {
+			return false;
 		}
 
-		// check if this weapon beats something
-		if (weapon.beats.length === 0) {
-			throw new Error(`Weapon ${weapon.name} can not beat anything`);
+		// check if all weapons are unique
+		if (weaponNames.size !== weaponList.length) {
+			return false;
 		}
 
-		weapon.beats.forEach((anotherName) => {
-			if (weapon.name === anotherName) {
-				throw new Error(`Weapon ${weapon.name} can not beat itself`);
-			}
+		// check if all weapons beat existing weapons
+		// but not themselves
+		const beatsAreValid = weaponList.reduce((valid, weapon) => {
+			return (
+				valid &&
+				weapon.beats.length > 0 &&
+				weapon.beats.every(
+					(beat) => weaponNames.has(beat) && beat !== weapon.name
+				)
+			);
+		}, true);
 
-			const existingWeapon = this.getWeaponByName(anotherName);
+		if (!beatsAreValid) {
+			return false;
+		}
 
-			if (
-				existingWeapon &&
-				weapon.beats.includes(anotherName) &&
-				existingWeapon.beats.includes(weapon.name)
-			) {
-				throw new Error(`Weapons can not beat each other`);
-			}
+		// check if every weapon can be beaten
+		const canBeBeaten = new Set();
+
+		weaponList.forEach((weapon) => {
+			weapon.beats.forEach((beat) => {
+				canBeBeaten.add(beat);
+			});
 		});
 
-		this.weapons.push(weapon);
+		if (canBeBeaten.size !== weaponNames.size) {
+			return false;
+		}
+
+		return true;
+	}
+
+	addWeaponCollection(weaponList: WeaponData[]) {
+		if (!this.isWeaponListValid(weaponList)) {
+			throw new Error("Weapon list is not valid");
+		}
+
+		this.weapons = weaponList.map((w) => new Weapon(w));
 	}
 }

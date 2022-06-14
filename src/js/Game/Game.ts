@@ -1,8 +1,7 @@
 import WeaponManager from "../Weapon/WeaponManager";
-import Weapon from "../Weapon/Weapon";
+import { WeaponData } from "../Weapon/Weapon";
 import Player, { PlayerType } from "../Player/Player";
 import PlayerAI from "../Player/PlayerAI";
-import { WeaponData } from "../config";
 import PlayerFactory from "../Player/PlayerFactory";
 
 export default class Game {
@@ -24,10 +23,7 @@ export default class Game {
 		document.getElementById("game-name").innerHTML = this.name;
 
 		// Weapons
-		this.weaponManager = new WeaponManager();
-		weaponList.forEach((weaponData) => {
-			this.weaponManager.addWeapon(new Weapon(weaponData));
-		});
+		this.weaponManager = new WeaponManager(weaponList);
 
 		// Players
 		this.playerTypes = playerTypes;
