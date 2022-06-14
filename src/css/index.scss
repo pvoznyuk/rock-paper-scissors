@@ -22,6 +22,8 @@ button {
 	border-radius: $radius;
 	border: 1px solid $grey;
 	cursor: pointer;
+	color: $black;
+	background-color: $lightgrey;
 
 	&:focus {
 		outline: $focus;
