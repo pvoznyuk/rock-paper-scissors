@@ -7,7 +7,10 @@ export default `
 		<section class="game__players">
 
 			<div class="player player--1">
-				<div class="player__weapon"></div>
+				<div class="player__weapon">
+					<nav class="player__weapon-list"></nav>
+					<div class="player__selected-weapon"></div>
+				</div>
 				<div class="player__info">
 					<h2 class="player__name"></h2>
 					<p class="player__score">Score: <span>0</span></p>
@@ -15,7 +18,10 @@ export default `
 			</div>
 
 			<div class="player player--2">
-				<div class="player__weapon"></div>
+				<div class="player__weapon">
+					<nav class="player__weapon-list"></nav>
+					<div class="player__selected-weapon"></div>
+				</div>
 				<div class="player__info">
 					<h2 class="player__name"></h2>
 					<p class="player__score">Score: <span>0</span></p>

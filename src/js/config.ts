@@ -4,6 +4,7 @@ export type WeaponData = {
 	beats: string[];
 };
 
+// Classic Rock/Paper/Scissors game
 export const rpsWeapons = [
 	{
 		name: "Rock",
@@ -22,6 +23,7 @@ export const rpsWeapons = [
 	},
 ];
 
+// Extended rules: with Lizard and Spock
 export const rpslsWeapons = [
 	{
 		name: "Rock",
@@ -50,6 +52,7 @@ export const rpslsWeapons = [
 	},
 ];
 
+// Extended rules: with Beer (beats Scissors and Rock but can be beaten by Paper)
 export const rpsbWeapons = [
 	{
 		name: "Rock",

@@ -1,12 +1,12 @@
 .weapon {
 	display: flex;
 	flex-direction: column;
-
 	align-items: center;
 	justify-content: center;
+	margin: 0;
 
 	&__name {
-		font-size: 0.7em;
+		font-size: 1em;
 	}
 
 	&__icon {

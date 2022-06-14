@@ -1,3 +1,4 @@
+import Weapon from "../Weapon/Weapon";
 import WeaponManager from "../Weapon/WeaponManager";
 import Player, { PlayerType } from "./Player";
 
@@ -9,38 +10,33 @@ export default class PlayerUser extends Player {
 	) {
 		super(name, querySelector, weaponManager);
 		this.type = PlayerType.USER;
-
-		this.elements.weapon.addEventListener("click", (e) => {
-			const target = e.target as HTMLElement;
-
-			if (target.classList.contains("player__weapon-item")) {
-				this.selectedWeapon = this.weaponManager.getWeaponByName(
-					target.dataset.weapon
-				);
-				this.renderWeapon();
-				this.dispatchEvent("weapon-selected");
-			}
-		});
-	}
-
-	selectWeapon() {
-		this.selectedWeapon = null;
 	}
 
 	get playerName(): string {
 		return `🐱 ${this.name} (you)`;
 	}
 
-	renderSelectingWeapon() {
-		this.elements.weapon.innerHTML = `
-			<nav class="player__weapon-list">
-				${this.weaponManager.weapons
-					.map(
-						(w) =>
-							`<button aria-label="${w.name}" class="player__weapon-item" data-weapon="${w.name}" title="${w.name}">${w.icon}</button>`
-					)
-					.join("")}
-			</nav>
-		`;
+	selectWeapon(weapon?: Weapon) {
+		this.selectedWeapon = weapon || null;
+		if (this.selectedWeapon) {
+			this.showSelectedWeapon();
+		}
+	}
+
+	generateWeaponList() {
+		this.weaponManager.weapons.forEach((weapon) => {
+			const weaponElement = document.createElement("button");
+			weaponElement.classList.add("player__weapon-item");
+			weaponElement.innerHTML = weapon.render();
+			weaponElement.dataset.weapon = weapon.name;
+			weaponElement.ariaLabel = weapon.name;
+
+			this.elements.weaponList.appendChild(weaponElement);
+
+			weaponElement.addEventListener("click", () => {
+				this.selectWeapon(this.weaponManager.getWeaponByName(weapon.name));
+				this.dispatchEvent("weapon-selected");
+			});
+		});
 	}
 }

@@ -20,6 +20,15 @@
 		align-items: center;
 		justify-content: center;
 		padding: math.div($pad, 2);
+
+		&[data-state="selected"] {
+			.player__weapon-list {
+				display: none;
+			}
+			.player__selected-weapon {
+				display: block;
+			}
+		}
 	}
 
 	&__weapon-list {
@@ -30,23 +39,32 @@
 		align-items: center;
 	}
 
+	&__selected-weapon {
+		display: none;
+	}
+
 	&__weapon-item {
 		border: 1px solid $grey;
 		box-sizing: border-box;
 		margin: 4px;
-		font-size: 1.8em;
 		cursor: pointer;
-		background: #e9e9e9;
+		background: $lightgrey;
 		border-radius: 6px;
 		transition: transform 0.2s, background-color 0.2s;
+		font-size: 0.30em;
+		min-width: 66px;
 
 		&:hover {
-			background: #dcd7d7;
+			background: darken($lightgrey, 10%);
 			transform: scale(1.1);
 		}
 
 		&:focus {
 			outline: $focus;
+		}
+
+		.weapon__name {
+			font-size: 2.2em;
 		}
 
 	}

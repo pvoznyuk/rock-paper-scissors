@@ -45,8 +45,6 @@ export default class Game {
 		document
 			.querySelector("#reset")
 			.addEventListener("click", this.reset.bind(this));
-
-		this.renderGame();
 	}
 
 	createPlayers() {
@@ -65,19 +63,18 @@ export default class Game {
 	}
 
 	reset() {
-		this.player1.score = 0;
-		this.player2.score = 0;
+		this.player1.reset();
+		this.player2.reset();
 		this.startRound();
 	}
 
 	startRound() {
-		this.player1.startChoosingWeapon();
-		this.player2.startChoosingWeapon();
+		this.player1.showWeaponList();
+		this.player2.showWeaponList();
 
 		this.resultPanel.classList.toggle("game__result--ready", false);
 		this.resultPanel.querySelector(".game__result-text").innerHTML =
 			"Choose your weapon";
-		this.renderGame();
 
 		if (this.areBothPlayersAI()) {
 			this.player1.selectWeapon();
@@ -101,8 +98,6 @@ export default class Game {
 		} else {
 			this.showResult(`Draw!`);
 		}
-
-		this.renderGame();
 	}
 
 	showResult(message: string) {
@@ -130,10 +125,5 @@ export default class Game {
 		return (
 			this.player1.type === PlayerType.AI && this.player2.type === PlayerType.AI
 		);
-	}
-
-	renderGame() {
-		this.player1.render();
-		this.player2.render();
 	}
 }

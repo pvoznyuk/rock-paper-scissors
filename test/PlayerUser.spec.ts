@@ -25,19 +25,24 @@ describe("Player (User)", () => {
 		expect(player.score).toBe(1);
 	});
 
+	it("should reset a score", () => {
+		player.score = 1;
+		expect(player.score).toBe(1);
+		player.reset();
+		expect(player.score).toBe(0);
+	});
+
 	it("should return a player's name", () => {
 		expect(player.playerName).toBe(`🐱 Player 1 (you)`);
 	});
 
-	it("should render selecting weapon", () => {
-		player.renderSelectingWeapon();
-		expect(player.elements.weapon.querySelector("button").outerHTML).toBe(
-			`<button aria-label="Gun" class="player__weapon-item" data-weapon="Gun" title="Gun">🔫</button>`
-		);
+	it("should generate weapon list", () => {
+		player.generateWeaponList();
+		expect(player.weaponManager.weapons.length).toBe(1);
 	});
 
 	it("should select a weapon", () => {
-		player.renderSelectingWeapon();
+		player.generateWeaponList();
 		expect(player.selectedWeapon).toBeNull();
 		player.selectWeapon();
 		let element: HTMLElement = document.querySelector(
