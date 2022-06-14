@@ -2,7 +2,7 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Game from "./Game/Game";
 import { PlayerType } from "./Player/Player";
-import { rpsWeapons, rpslsWeapons } from "./config";
+import { rpsWeapons, rpslsWeapons, rpsbWeapons } from "./config";
 import "../css/index.scss";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", function () {
 				rpslsWeapons,
 				[PlayerType.USER, PlayerType.AI]
 			);
+			break;
+		case "beer":
+			game = new Game("Rock ✕ Paper ✕ Scissors ✕ Beer", rpsbWeapons, [
+				PlayerType.AI,
+				PlayerType.USER,
+			]);
 			break;
 		// RPS Human vs Computer
 		default:

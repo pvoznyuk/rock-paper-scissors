@@ -1,6 +1,7 @@
 import WeaponManager from "../Weapon/WeaponManager";
 import Weapon from "../Weapon/Weapon";
 import Player, { PlayerType } from "../Player/Player";
+import PlayerAI from "../Player/PlayerAI";
 import { WeaponData } from "../config";
 import PlayerFactory from "../Player/PlayerFactory";
 
@@ -110,14 +111,18 @@ export default class Game {
 	}
 
 	addPlayersListener() {
-		// if Player1 selected his weapon, Player2 should select their one
-		this.player1.DOMElement.addEventListener("weapon-selected", () => {
-			this.player2.selectWeapon();
-		});
-
-		// if Player2 selected his weapon, we can select the winner
-		this.player2.DOMElement.addEventListener("weapon-selected", () => {
-			this.selectWinner();
+		[this.player1, this.player2].forEach((player) => {
+			player.DOMElement.addEventListener("weapon-selected", () => {
+				if (this.player1.selectedWeapon && this.player2.selectedWeapon) {
+					this.selectWinner();
+				} else {
+					[this.player1, this.player2].forEach((player) => {
+						if (player instanceof PlayerAI && !player.selectedWeapon) {
+							player.selectWeapon();
+						}
+					});
+				}
+			});
 		});
 	}
 

@@ -13,10 +13,10 @@ export default class Weapon {
 
 	render() {
 		return `
-			<div class="weapon">
+			<figure class="weapon">
 				<div class="weapon__icon">${this.icon}</div>
-				<div class="weapon__name">${this.name}</div>
-			</div>
+				<figcaption class="weapon__name">${this.name}</figcaption>
+			</figure>
 		`;
 	}
 }

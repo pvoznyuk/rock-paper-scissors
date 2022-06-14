@@ -49,3 +49,26 @@ export const rpslsWeapons = [
 		beats: ["Rock", "Scissors"],
 	},
 ];
+
+export const rpsbWeapons = [
+	{
+		name: "Rock",
+		icon: "✊",
+		beats: ["Scissors"],
+	},
+	{
+		name: "Paper",
+		icon: "✋",
+		beats: ["Rock", "Beer"],
+	},
+	{
+		name: "Scissors",
+		icon: "✌️",
+		beats: ["Paper"],
+	},
+	{
+		name: "Beer",
+		icon: "🍺",
+		beats: ["Rock", "Scissors"],
+	},
+];
