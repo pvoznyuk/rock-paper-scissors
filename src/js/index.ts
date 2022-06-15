@@ -13,22 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
 	switch (hash) {
 		// RPS Computer vs Computer
 		case "ai":
-			game = new Game("Rock ✕ Paper ✕ Scissors", rpsWeapons, [
+			game = new Game("Rock, Paper, Scissors", rpsWeapons, [
 				PlayerType.AI,
 				PlayerType.AI,
 			]);
 			break;
 		// RPSLS Human vs Computer
 		case "spock":
-			game = new Game(
-				"Rock ✕ Paper ✕ Scissors ✕ Lizard ✕ Spock",
-				rpslsWeapons,
-				[PlayerType.USER, PlayerType.AI]
-			);
+			game = new Game("Rock, Paper, Scissors, Lizard, Spock", rpslsWeapons, [
+				PlayerType.USER,
+				PlayerType.AI,
+			]);
 			break;
 		// RPSB (with Beer) Human vs Computer
 		case "beer":
-			game = new Game("Rock ✕ Paper ✕ Scissors ✕ Beer", rpsbWeapons, [
+			game = new Game("Rock, Paper, Scissors, Beer", rpsbWeapons, [
 				PlayerType.AI,
 				PlayerType.USER,
 			]);
@@ -36,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
 		// Invalid weapon list
 		case "invalid":
 			game = new Game(
-				"Rock ✕ Paper ✕ Scissors",
+				"Rock, Paper, Scissors",
 				[],
 				[PlayerType.AI, PlayerType.USER]
 			);
 			break;
 		// RPS Human vs Computer
 		default:
-			game = new Game("Rock ✕ Paper ✕ Scissors", rpsWeapons, [
+			game = new Game("Rock, Paper, Scissors", rpsWeapons, [
 				PlayerType.USER,
 				PlayerType.AI,
 			]);

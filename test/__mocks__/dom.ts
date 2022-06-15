@@ -1,6 +1,6 @@
 export default `
 	<header>
-		<h1 id="game-name" class="game__name">Rock ✕ Paper ✕ Scissors</h1>
+		<h1 id="game-name" class="game__name">Rock, Paper, Scissors</h1>
 	</header>
 
 	<main class="game">
