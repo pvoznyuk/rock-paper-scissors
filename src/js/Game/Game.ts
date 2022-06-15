@@ -12,7 +12,13 @@ export default class Game {
 	playerFactory: PlayerFactory;
 	weaponManager: WeaponManager;
 
-	resultPanel: HTMLDivElement;
+	elements: {
+		gameName: HTMLElement;
+		resultPanel: HTMLElement;
+		resultText: HTMLElement;
+		nextButton: HTMLElement;
+		resetButton: HTMLElement;
+	};
 
 	constructor(
 		name: string,
@@ -20,18 +26,26 @@ export default class Game {
 		playerTypes: PlayerType[]
 	) {
 		this.name = name;
-		document.getElementById("game-name").innerHTML = this.name;
 
-		// Result panel and next round button
-		this.resultPanel = document.querySelector(".game__result");
-		this.resultPanel
-			.querySelector("#next")
-			.addEventListener("click", this.startRound.bind(this));
+		// cache DOM nodes
+		this.elements = {
+			gameName: document.getElementById("game-name"),
+			resultPanel: document.querySelector(".game__result"),
+			resultText: document.querySelector(".game__result-text"),
+			nextButton: document.getElementById("next"),
+			resetButton: document.getElementById("reset"),
+		};
 
-		// Reset button
-		document
-			.querySelector("#reset")
-			.addEventListener("click", this.reset.bind(this));
+		this.elements.gameName.innerHTML = this.name;
+
+		// Next round button listener
+		this.elements.nextButton.addEventListener(
+			"click",
+			this.startRound.bind(this)
+		);
+
+		// Reset button listener
+		this.elements.resetButton.addEventListener("click", this.reset.bind(this));
 
 		try {
 			// Weapons
@@ -43,7 +57,7 @@ export default class Game {
 			this.createPlayers();
 			this.addPlayersListener();
 		} catch (error) {
-			this.resultPanel.querySelector(".game__result-text").innerHTML = error;
+			this.setInformationText(error);
 		}
 	}
 
@@ -72,9 +86,8 @@ export default class Game {
 		this.player1.showWeaponList();
 		this.player2.showWeaponList();
 
-		this.resultPanel.classList.toggle("game__result--ready", false);
-		this.resultPanel.querySelector(".game__result-text").innerHTML =
-			"Choose your weapon";
+		this.elements.resultPanel.classList.toggle("game__result--ready", false);
+		this.setInformationText("Choose your weapon");
 
 		if (this.areBothPlayersAI()) {
 			this.player1.selectWeapon();
@@ -101,8 +114,8 @@ export default class Game {
 	}
 
 	showResult(message: string) {
-		this.resultPanel.classList.toggle("game__result--ready", true);
-		this.resultPanel.querySelector(".game__result-text").innerHTML = message;
+		this.elements.resultPanel.classList.toggle("game__result--ready", true);
+		this.setInformationText(message);
 	}
 
 	addPlayersListener() {
@@ -125,5 +138,9 @@ export default class Game {
 		return (
 			this.player1.type === PlayerType.AI && this.player2.type === PlayerType.AI
 		);
+	}
+
+	setInformationText(message: string) {
+		this.elements.resultText.innerHTML = message;
 	}
 }
