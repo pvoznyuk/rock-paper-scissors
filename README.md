@@ -1,9 +1,19 @@
 # Gumtree Frontend Challenge
 
+## Important
+
+I have modified the codebase for latest version of `typescript`, `webpack` and other packages. This why I recommend to build and run the app on `NodeJS @ 16`
+
+## Demo
+
+![demo](./demo.gif)
+
 ## User Story
+
 The goal of this task is to create a version of the game 'Rock, Paper Scissors' in the browser.
 
 ## Acceptance Criteria
+
 - Ability to play against the computer
 - Ability to simulate a game (Computer vs Computer)
 - Ability to restart the game
@@ -12,6 +22,7 @@ The goal of this task is to create a version of the game 'Rock, Paper Scissors' 
   - http://en.wikipedia.org/wiki/Rock-paper-scissors
 
 ## Technical Requirements
+
 You should:
 
 - Support multiple browsers
@@ -29,11 +40,13 @@ You should not:
 ## Guidelines
 
 ### Solution Design
+
 Your solution should be clear and easy to understand, consider using popular software principles such as DRY, KISS, SOLID etc.
 
 Try to avoid unnecessary complexity and over-engineering.
 
 ### User Interface
+
 The user interface can be as simple or as complex as you wish, however, you will be marked on:
 
 - Responsive Design
@@ -42,12 +55,14 @@ The user interface can be as simple or as complex as you wish, however, you will
 You will not be marked on your design choices.
 
 ### Extensibility
+
 Your solution should be easily extendable to include additional rules.
 
 For example:
 http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock
 
 ## Setup
+
 We provide the following tooling:
 
 - `webpack` to modularise your Javascript code
@@ -57,7 +72,8 @@ We provide the following tooling:
 - `jest` to help you write and run your unit tests
 
 ## Commands
-``` bash
+
+```bash
 # Install the dependencies
 yarn install
 
@@ -72,10 +88,11 @@ yarn lint
 ```
 
 ## Submission
+
 Please fork/clone the repository, commit your changes and then send us a link to your work
 
 This repository should not have any bugs. If you do find any, please report them back to us.
 
 We look forward to your submission, happy coding! :)
 
-*The Gumtree Engineering team*
+_The Gumtree Engineering team_
