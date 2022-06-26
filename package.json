@@ -14,7 +14,8 @@
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:accessibility": "node ./accessibility/index.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.2",
@@ -32,6 +33,7 @@
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
     "mini-css-extract-plugin": "^2.6.0",
+    "pa11y": "^6.2.3",
     "regenerator-runtime": "^0.13.3",
     "sass": "^1.52.3",
     "sass-loader": "^13.0.0",
